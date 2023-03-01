@@ -4,35 +4,35 @@ FuzzyMatcher is a Python library for fuzzy string matching using the fuzzywuzzy 
 
 ## Installation
 
-FuzzyMatcher can be installed via pip:
+To get FuzzyMatcher please clone repository via:
 
 ```bash
-pip install fuzzymatcher
+git clone "https://github.com/burik193/FastFuzzyMatching.git"
+```
 
 ## Usage
 
-from fuzzymatcher import FuzzyMatcher
+```bash
+from fuzzyMatcher.matcher import FuzzyMatcher
+import os
+from pathlib import Path
+# from IPython.display import display
 
-# Initialize the FuzzyMatcher object
-matcher = FuzzyMatcher()
+# Here is an example of how to use FuzzyMatcher
 
-# Load the left and right dataframes
-matcher.load_left(left_df)
-matcher.load_right(right_df)
+if __name__ == '__main__':
+    root = Path(os.getcwd())
+    lhs = root.joinpath('path_to_left_df') # Dataset 87816 x 44 - 10.777 distinct names
+    rhs = root.joinpath('path_to_right_df')
+    M = FuzzyMatcher(lhs=lhs, rhs=rhs, left_on='col_name_on_lhs', right_on='col_name_on_rhs', verbose=True)
+    match = M.merge(deep=True, max_matches=3)
+    #display(match)
+    match.to_excel('produced_match.xlsx')
 
-# Set the left and right join keys
-matcher.set_left_on('left_key')
-matcher.set_right_on('right_key')
+    match = M.make_scoring(rules={'categorical_column_name': [('value_1', 1.5), ('value_2', 1)], 'value_3': None})
 
-# Match the dataframes
-matcher.match()
-
-# Score the matches using custom rules
-matcher.make_scoring({'column1': [('value1', 0.5), ('value2', 0.8)], 'column2': None})
-
-# Merge the dataframes based on the matches
-matcher.merge()
-
+    match.to_excel('produced_match_scored.xlsx')
+```
 
 ## Features
 - Simple string matching algorithm
