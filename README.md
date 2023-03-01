@@ -1,4 +1,4 @@
-# FuzzyMatcher
+# FastFuzzyMatching
 
 FuzzyMatcher is a Python library for fuzzy string matching using the fuzzywuzzy package. It provides an easy-to-use interface for matching two pandas dataframes, with the ability to customize the matching rules and scoring criteria. The matching can be performed using either a simple matching algorithm or a deep matching algorithm.
 
@@ -44,5 +44,5 @@ if __name__ == '__main__':
 ## Contributing
 We welcome contributions to FuzzyMatcher. If you encounter a bug, have a feature request, or would like to contribute a new feature or enhancement, please open an issue or submit a pull request.
 
-License
-FuzzyMatcher is released under the MIT License.
+## License
+FastFuzzyMatching is released under the MIT License.
